@@ -1,0 +1,20 @@
+#FROM alpine/java:21 as jre-build
+FROM eclipse-temurin:21 as jre-build
+
+RUN mkdir /opt/app
+
+COPY Main.class /opt/app
+
+WORKDIR /opt/app
+
+CMD ["java", \
+#"-Xms4g", \
+#"-Xmx4g", \
+"-XX:MaxRAMPercentage=75", \
+"-Dcom.sun.management.jmxremote", \
+"-Dcom.sun.management.jmxremote.port=9010", \
+"-Dcom.sun.management.jmxremote.local.only=false", \
+"-Dcom.sun.management.jmxremote.authenticate=false", \
+"-Dcom.sun.management.jmxremote.ssl=false", "Main"]
+
+EXPOSE 9010

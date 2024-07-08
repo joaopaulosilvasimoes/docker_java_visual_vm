@@ -1,0 +1,1 @@
+docker run -it --rm --name 'visual_vm_test' --cpus=2 --memory="4g" --memory-swap="8g" -p 9010:9010 visual_vm_test
